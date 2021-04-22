@@ -1,0 +1,7 @@
+#N canvas -1031 -1417 1280 686 12;
+#X obj 576 92 inlet;
+#X obj 588 208 clone serialSender 6;
+#X msg 589 172 vis 2 1;
+#X connect 0 0 1 0;
+#X connect 2 0 1 0;
+#X coords 0 5488 1 5480 0 0 0;
