@@ -16,8 +16,6 @@ import sys
 import random
 import argparse
 
-
-
 parser = argparse.ArgumentParser()
 parser.add_argument('--num_buffers', type=int, default=6)
 parser.add_argument('--root', type=str, default="/Users/janzuiderveld/Documents/GitHub/SSI")
@@ -153,6 +151,12 @@ while True:
                 # reset_generation_vars
                 melody_t, rhythm_t, topk = 1.5, 1, 50
             
+            if melody_t < 0.25:
+                melody_t = 1.5
+                rhythm_t = 1
+                topk = 50
+
+
             empty_socket(sock)
             if not data_recv:
                 break

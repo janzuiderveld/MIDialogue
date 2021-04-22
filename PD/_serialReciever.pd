@@ -20,7 +20,7 @@
 #X obj 147 556 outlet;
 #X obj 153 499 clone com_parse 6;
 #X obj 204 133 r laser_round;
-#X msg 167 194 open \$1;
+#X msg 167 197 open \$1;
 #X obj 167 166 f;
 #X obj 345 133 r comport_device;
 #X obj 71 72 r what_device?;
@@ -46,3 +46,4 @@
 #X connect 19 0 3 0;
 #X connect 20 0 19 0;
 #X connect 21 0 20 1;
+#X connect 21 0 20 0;

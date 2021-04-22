@@ -36,7 +36,7 @@ meerdere noten aangeslagen bij verlaten hand;
 #X obj 183 565 s notes;
 #X obj 113 398 r midinote\$1;
 #X msg 301 438 10;
-#X obj 318 681 s midiout_copy;
+#X obj 318 680 s midiout_copy;
 #X obj 475 323 r h_on\$1;
 #X obj 475 352 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
