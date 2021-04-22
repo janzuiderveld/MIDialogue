@@ -6,7 +6,7 @@ PIANO_TYPES = list(range(24)) + list(range(80, 96)) # Piano, Synths
 PLUCK_TYPES = list(range(24, 40)) + list(range(104, 112)) # Guitar, Bass, Ethnic
 BRIGHT_TYPES = list(range(40, 56)) + list(range(56, 80))
 
-PIANO_RANGE = (21, 109) # https://en.wikipedia.org/wiki/Scientific_pitch_notation
+PIANO_RANGE = (21, 109)
 
 class Track(Enum):
     PIANO = 0 # discrete instruments - keyboard, woodwinds

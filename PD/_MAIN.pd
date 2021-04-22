@@ -7,34 +7,34 @@ in float gridx float gridy;
 #A 0 0 0 0 0 0 0;
 #X coords 0 1.5 6 -1 200 140 1 0 0;
 #X restore 21 73 graph;
-#X obj 852 495 _serialReciever;
-#X obj 300 633 soundscape1;
-#X obj 286 573 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 890 595 _serialReciever;
+#X obj 333 759 soundscape1;
+#X obj 319 699 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 359 575 bng 30 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 392 701 bng 30 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 272 538 any_detection_check;
-#X text 296 590 yes;
-#X text 369 606 no;
-#X obj 268 506 r detect_update;
-#X obj 428 565 hsl 128 15 0 2 0 0 empty empty empty -2 -8 0 10 -262144
+#X obj 305 664 any_detection_check;
+#X text 329 716 yes;
+#X text 402 732 no;
+#X obj 301 632 r detect_update;
+#X obj 461 691 hsl 128 15 0 2 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 635 1;
-#X msg 713 698 connect localhost 13001;
-#X obj 866 727 netsend;
-#X msg 891 697 send 1;
+#X msg 751 798 connect localhost 13001;
+#X obj 904 827 netsend;
+#X msg 929 797 send 1;
 #N canvas 0 23 450 278 (subpatch) 0;
 #X array all_distance 6 float 3;
-#A 0 96.2984 101.142 99.7289 100.139 100.057 99.8392;
+#A 0 97.685 97.1338 100.225 100.692 94.9878 100.004;
 #X coords 0 100 6 -1 200 140 1 0 0;
 #X restore 232 71 graph;
-#X obj 48 943 table all_distance;
-#X obj 51 968 table all_note_quantized;
+#X obj 50 996 table all_distance;
+#X obj 53 1021 table all_note_quantized;
 #N canvas 0 23 450 278 (subpatch) 0;
 #X array all_note_quantized 6 float 3;
-#A 0 3 3 3 3 3 3;
+#A 0 0 0 0 0 0 0;
 #X coords 0 6 6 0 200 140 1 0 0;
 #X restore 448 76 graph;
-#X msg 40 567 vis 2 1;
+#X msg 73 693 vis 2 1;
 #N canvas 0 23 450 278 (subpatch) 0;
 #X array queued_notes 5000 float 3;
 #A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
@@ -189,63 +189,63 @@ in float gridx float gridy;
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 #X coords 0 90 5000 0 200 140 1 0 0;
 #X restore 871 73 graph;
-#X msg 116 593 all \$1;
-#X obj 616 673 loadbang;
-#X obj 626 1016 ./out~;
-#X obj 599 974 catch~ synth_L;
-#X obj 878 581 clone serialSender 6;
-#X msg 45 778 vis 2 1;
-#X msg 145 566 0;
-#X obj 150 508 loadbang;
-#X obj 37 536 s update_midis;
-#X obj 427 508 loadbang;
-#X msg 1001 538 vis 0 1;
+#X msg 149 719 all \$1;
+#X obj 654 773 loadbang;
+#X obj 628 1069 ./out~;
+#X obj 601 1027 catch~ synth_L;
+#X obj 916 681 clone serialSender 6;
+#X msg 47 831 vis 2 1;
+#X msg 178 692 0;
+#X obj 183 634 loadbang;
+#X obj 70 662 s update_midis;
+#X obj 460 634 loadbang;
+#X msg 1039 638 vis 0 1;
 #N canvas 0 23 450 278 (subpatch) 0;
 #X array all_midi_position 6 float 3;
-#A 0 96 98 98 96 96 98;
+#A 0 36 38 40 41 43 45;
 #X coords 0 127 6 20 200 140 1 0 0;
 #X restore 660 74 graph;
-#X msg 42 591 vis 3 1;
-#X msg 597 947 set 1;
-#X obj 343 1041 throw~ synth_L;
-#X obj 454 1043 throw~ synth_R;
-#X obj 155 534 s init_midis;
-#X obj 224 512 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X msg 75 717 vis 3 1;
+#X msg 599 1000 set 1;
+#X obj 345 1094 throw~ synth_L;
+#X obj 456 1096 throw~ synth_R;
+#X obj 188 660 s init_midis;
+#X obj 257 638 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 353 847 adc~ 1;
-#X obj 442 886 throw~ to_reverb;
-#X obj 708 972 catch~ synth_R;
-#X obj 616 733 netreceive;
-#X obj 46 805 clone midi_out 6;
-#X msg 615 702 listen 13002;
-#X obj 615 794 s musicbotint;
-#X obj 42 510 r musicbotint;
-#X msg 108 565 3;
-#X obj 618 762 route ready;
-#X obj 596 500 loadbang;
-#X obj 599 526 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 355 900 adc~ 1;
+#X obj 444 939 throw~ to_reverb;
+#X obj 710 1025 catch~ synth_R;
+#X obj 654 833 netreceive;
+#X obj 48 858 clone midi_out 6;
+#X msg 653 802 listen 13002;
+#X obj 653 894 s musicbotint;
+#X obj 75 636 r musicbotint;
+#X msg 141 691 3;
+#X obj 656 862 route ready;
+#X obj 634 600 loadbang;
+#X obj 637 626 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
-#X obj 596 548 metro 1;
-#X obj 596 572 s banger;
-#X obj 833 671 r musicbot_GO;
-#X obj 288 702 r musicbot_GO;
-#X obj 394 703 r musicbotint;
-#X msg 394 727 1;
-#X msg 288 726 0;
-#X obj 288 761 s musicbot_avail;
-#X obj 499 706 loadbang;
-#X obj 728 525 loadbang;
-#X obj 726 579 timer;
-#X obj 758 549 r banger;
-#X obj 768 627 s start_cooldown;
-#X floatatom 727 627 5 0 0 0 - - -;
-#X obj 727 604 > 15000;
-#X obj 46 832 midi_recorder;
-#X msg 428 536 0.1;
-#X obj 858 1023 r musicbotint;
-#X obj 856 1051 s laser_round;
-#X obj 47 866 midi_ctrl_increaser;
-#X obj 45 1023 declare -path patch_editor_abs;
+#X obj 634 648 metro 1;
+#X obj 634 672 s banger;
+#X obj 871 771 r musicbot_GO;
+#X obj 326 802 r musicbot_GO;
+#X obj 432 803 r musicbotint;
+#X msg 432 827 1;
+#X msg 326 826 0;
+#X obj 326 861 s musicbot_avail;
+#X obj 537 806 loadbang;
+#X obj 766 625 loadbang;
+#X obj 764 679 timer;
+#X obj 796 649 r banger;
+#X obj 806 727 s start_cooldown;
+#X floatatom 765 727 5 0 0 0 - - -;
+#X obj 765 704 > 15000;
+#X obj 48 885 midi_recorder;
+#X msg 461 662 0.1;
+#X obj 860 1076 r musicbotint;
+#X obj 858 1104 s laser_round;
+#X obj 49 919 midi_ctrl_increaser;
+#X obj 47 1076 declare -path patch_editor_abs;
 #N canvas 447 23 707 551 patch-editor-do-not-delete 0;
 #X msg 26 128 \; pd dsp 0;
 #X obj 26 34 loadbang;
@@ -6798,24 +6798,24 @@ and send to the name of the module \, for example [s basic-osc];
 #X connect 16 0 15 0;
 #X connect 17 0 16 0;
 #X connect 19 0 4 0;
-#X restore 45 1044 pd patch-editor-do-not-delete;
-#X obj 357 914 stereo-delay 1;
+#X restore 47 1097 pd patch-editor-do-not-delete;
+#X obj 359 967 stereo-delay 1;
 #X obj 2146 1339;
 #X obj 1466 1323;
-#X obj 855 964 r musicbot_avail;
-#X floatatom 855 988 10 0 0 0 - - -;
-#X obj 701 496 r musicbotint;
-#X obj 686 528 t b b;
-#X msg 695 554 10000;
-#X msg 1000 517 vis 1 1;
-#X obj 386 678 r init_midis;
-#X obj 35 620 clone note_buffer 6;
-#X obj 595 924 loadbang;
+#X obj 455 557 r musicbot_avail;
+#X floatatom 455 581 10 0 0 0 - - -;
+#X obj 739 596 r musicbotint;
+#X obj 724 628 t b b;
+#X msg 733 654 10000;
+#X msg 1038 617 vis 1 1;
+#X obj 424 778 r init_midis;
+#X obj 68 746 clone note_buffer 6;
+#X obj 597 977 loadbang;
 #X floatatom 446 294 5 0 0 0 - - comport_device;
 #X msg 446 319 ?;
 #X obj 445 338 s what_device?;
 #X obj 642 234 vsl 15 128 500 0 0 1 empty empty empty 0 -9 0 10 -262144
--1 -1 10500 1;
+-1 -1 12700 1;
 #X obj 598 404 switch;
 #X obj 556 293 vradio 15 1 0 3 empty simulate empty 0 -8 0 10 -228856
 -1 -1 1;
@@ -6836,25 +6836,21 @@ and send to the name of the module \, for example [s basic-osc];
 #X msg 816 372 4 \$1;
 #X msg 857 373 5 \$1;
 #X obj 550 373 r serialcom;
-#X obj 881 518 s serialcom;
+#X obj 919 618 s serialcom;
 #X obj 598 428 s serialinput;
-#X obj 880 550 r serialinput;
+#X obj 918 650 r serialinput;
 #X obj 557 234 loadbang;
 #X msg 557 258 1;
-#X msg 440 373 2;
-#X obj 440 393 s simulate;
-#X obj 45 896 queued_notes_writer;
+#X msg 444 379 2;
+#X obj 444 399 s simulate;
+#X obj 47 949 queued_notes_writer;
 #X text 25 254 1 Make sure generation server is running before opening
 this patch;
 #X text 26 231 INSTRUCTIONS;
-#X text 27 345 If you want to simulate using the sliders here \, press
-the box stating 2:;
-#X text 24 293 2 INPUT: If you want to use serial communicated data
+#X text 25 293 2 INPUT: If you want to use serial communicated data
 \, fill in your port number here: (click ? if you don't know your port
 number. WARNING: PD might freeze a while;
-#X text 19 412 3 OUTPUT: Make sure your SW/HW MIDI synth is connected
-and listening on channel 1;
-#X text 15 453 4 The generation server generate a response when a ten
+#X text 21 482 4 The generation server generate a response when a ten
 note sequence with less than 4 seconds between each note is played.
 Depending on your setup \, this can take a while;
 #X obj 915 365 midiin;
@@ -6863,7 +6859,17 @@ Depending on your setup \, this can take a while;
 #X obj 1001 409 s midiout_copy;
 #X obj 909 429 unpack 0 0;
 #X obj 933 453 s midi_input;
-#X text 52 392;
+#X text 23 377 If you want to simulate the lasers / sensors with partial
+generated note seuqence buffers \, you can use the sliders here \,
+press the box stating 2:;
+#X text 26 345 Any input on midi IN channel 1 is interpreted;
+#X text 23 434 2 OUTPUT: Make sure your SW/HW MIDI synth is connected
+and listening on channel 1 Have the audio input routed to adc channel
+1 in Pure data;
+#X text 26 602 If so \, restart this process;
+#X text 26 553 Finally \, if there are no notes appearing in queued
+notes \, and there are no generated responses \, check if this box
+is stuck on 0 (it normally indicates the model is calculating):;
 #X connect 1 0 101 0;
 #X connect 3 0 2 0;
 #X connect 4 0 2 1;
@@ -6943,8 +6949,8 @@ Depending on your setup \, this can take a while;
 #X connect 104 0 105 0;
 #X connect 105 0 88 0;
 #X connect 106 0 107 0;
-#X connect 115 0 116 0;
-#X connect 115 0 118 0;
-#X connect 116 0 119 0;
-#X connect 119 0 117 0;
-#X connect 119 0 120 0;
+#X connect 113 0 114 0;
+#X connect 113 0 116 0;
+#X connect 114 0 117 0;
+#X connect 117 0 115 0;
+#X connect 117 0 118 0;

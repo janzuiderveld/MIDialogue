@@ -19,7 +19,7 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--num_buffers', type=int, default=6)
 parser.add_argument('--root', type=str, default="/Users/janzuiderveld/Documents/GitHub/SSI")
-parser.add_argument('--model_name', type=str, default="MusicTransformerKeyC.pth")
+parser.add_argument('--model_name', type=str, default="transformerC_checkpoint.pth")
 args = parser.parse_args()
 
 
