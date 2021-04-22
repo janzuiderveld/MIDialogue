@@ -19,8 +19,9 @@ import argparse
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--num_lasers', type=int, default=6)
+parser.add_argument('--num_buffers', type=int, default=6)
 parser.add_argument('--root', type=str, default="/Users/janzuiderveld/Documents/GitHub/SSI")
+parser.add_argument('--model_name', type=str, default="MusicTransformerKeyC.pth")
 args = parser.parse_args()
 
 
@@ -92,7 +93,7 @@ def generate_midi(input_f="", output_f="", ntokens=60, note_t=2.0, rhythm_t=0.1,
     generated.stream.write('midi', fp=f"{args.root}/PD/generated_sequences/{output_f}")
     # return generated
 
-def recipe_update_lasers(note_t, rhythm_t, top_k, top_p, lasers=args.num_lasers, input_filename="generated_sequences/generation.mid", ntokens=50):
+def recipe_update_lasers(note_t, rhythm_t, top_k, top_p, lasers=args.num_buffers, input_filename="generated_sequences/generation.mid", ntokens=50):
     note_lines = []
     for i in range(lasers):
         generate_midi(input_f=input_filename, output_f=f"laser_update_{i}.mid", ntokens=ntokens, note_t=note_t, rhythm_t=rhythm_t, top_k=top_k, top_p=top_p)
