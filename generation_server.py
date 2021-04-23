@@ -76,7 +76,8 @@ def play_midi(fn:""):
                         rand = str(random.randint(1, 6)) + ";"
                         while rand == last_rand:
                             rand = str(random.randint(1, 6)) + ";"
-                        
+                    else:
+                        continue
                     clientSocket.send(bytes(rand.encode('utf-8')))
                     last_note=note
                     last_rand=rand
@@ -133,11 +134,10 @@ sock.bind(server_address)
 sock.listen(1)
 
 empty_socket(sock)
-data_snd = b"ready;";
 
-melody_t = 1.5
-rhythm_t = 1
-topk = 50
+melody_t = 2.1
+rhythm_t = 1.0
+topk = 75
 
 # clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
 # clientSocket.connect(("localhost",13002));
@@ -164,25 +164,26 @@ while True:
 
                 clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
                 clientSocket.connect(("localhost",13002));
-                clientSocket.send(data_snd)
 
                 clientSocket.send(b"all_off;")
                 time.sleep(2)
                 play_midi("generation")
-                time.sleep(1)
+                time.sleep(2)
                 clientSocket.send(b"all_on;")
                 print(f"melody_temp: {melody_t}, rhythm_t: {rhythm_t}, topk: {topk}")
 
+                clientSocket.send(b"ready;")
+                
                 melody_t -= 0.1
-                rhythm_t += 0.1
-                # topk -= 5
+                rhythm_t += 0.05
+                topk -= 5
 
             if str(data_recv) == "2" or topk < 10:
                 # reset_generation_vars
-                melody_t, rhythm_t, topk = 1.5, 1, 50
+                melody_t, rhythm_t, topk = 3, 1.5, 100
             
-            if melody_t < 0.25:
-                melody_t = 1.5
+            if melody_t < 1:
+                melody_t = 2
                 rhythm_t = 1
                 topk = 50
 
