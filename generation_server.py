@@ -15,6 +15,7 @@ import socket
 import sys
 import random
 import argparse
+import time
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--num_buffers', type=int, default=6)
@@ -59,12 +60,29 @@ def filter_notes_from_midi(fn=""):
     return notes
 
 def play_midi(fn:""):
+    last_note=0
+    last_rand=0
     # get your midi device with mido.get_output_names()
+    # start = time.time()
     outport = mido.open_output("monologue SOUND")
     for msg in MidiFile(f"{args.root}/PD/generated_sequences/{fn}.mid").play():
         if not msg.is_meta:
             if str(msg).split()[2].split("=")[0] =="note":
                 outport.send(msg)
+                if str(msg).split()[0] =="note_on":
+                    # print(msg)
+                    note = str(msg).split()[2].split("=")[1]
+                    if note != last_note:
+                        rand = str(random.randint(1, 6)) + ";"
+                        while rand == last_rand:
+                            rand = str(random.randint(1, 6)) + ";"
+                        
+                    clientSocket.send(bytes(rand.encode('utf-8')))
+                    last_note=note
+                    last_rand=rand
+                    # print(note)
+    # print(time.time()-start)
+
 
 def filter_notes_from_musicitem(musicitem):
     notes = []
@@ -121,11 +139,19 @@ melody_t = 1.5
 rhythm_t = 1
 topk = 50
 
+# clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
+# clientSocket.connect(("localhost",13002));
+# play_midi("generation")
+
 while True:
     print('waiting for a connection')
     connection, client_address = sock.accept()
     try:
         print('client connected:', client_address)
+        clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
+        clientSocket.connect(("localhost",13002));
+        clientSocket.send(b"all_on;")
+        
         while True:
             data_recv = connection.recv(16)
             data_recv = data_recv.decode("utf-8")
@@ -140,7 +166,11 @@ while True:
                 clientSocket.connect(("localhost",13002));
                 clientSocket.send(data_snd)
 
+                clientSocket.send(b"all_off;")
+                time.sleep(2)
                 play_midi("generation")
+                time.sleep(1)
+                clientSocket.send(b"all_on;")
                 print(f"melody_temp: {melody_t}, rhythm_t: {rhythm_t}, topk: {topk}")
 
                 melody_t -= 0.1
