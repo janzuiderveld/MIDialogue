@@ -1,6 +1,10 @@
 # MIDialogue
 Participate in a musical dialogue with an AI using your own MIDI synthesizers and serial connected sensors
 
+
+[![](http://img.youtube.com/vi/n8UbtETPSNk/0.jpg)](http://www.youtube.com/watch?v=n8UbtETPSNk "")
+
+
 ## Setup
 * Install Conda for Python 3
   * See [instructions](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)
@@ -18,3 +22,5 @@ In the root directory of your clone of this repo:
 * Start the generation server with the following args:
   * `python3 generation_server.py --root $PWD`
 * Open the Pure data patch PD/_MAIN.pd, and follow the instructions there
+
+Many variables of this project are undocumented, don't hestitate to contact me if you have any questions (:
