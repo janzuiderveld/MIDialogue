@@ -15,7 +15,7 @@ Participate in a musical dialogue with an AI using your own MIDI synthesizers an
 In the root directory of your clone of this repo:
 
 * Create a Conda env from `environment.yaml` and activate.
-  *  `conda env create --name ENVNAME --file environment.yaml`
+  *  `conda env create --name ENVNAME --file environment.yml`
   *  `conda activate ENVNAME`
 * Download the weights of the sequence prediction model and store them in `data/numpy/trained_models/transformerC_checkpoint.pth` with the following command:
   * `wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Si9mGzZdUUoXQcFYM7y2qCzkfyRvvWnr' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1Si9mGzZdUUoXQcFYM7y2qCzkfyRvvWnr" -O data/numpy/trained_models/transformerC_checkpoint.pth && rm -rf /tmp/cookies.txt`
