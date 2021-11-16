@@ -1,5 +1,5 @@
 # MIDialogue
-Participate in a musical dialogue with an AI using your own MIDI synthesizers and serial connected sensors
+Participate in a musical dialogue with an AI using your own MIDI synthesizers and sensors
 
 
 [![](http://img.youtube.com/vi/n8UbtETPSNk/0.jpg)](http://www.youtube.com/watch?v=n8UbtETPSNk "")
